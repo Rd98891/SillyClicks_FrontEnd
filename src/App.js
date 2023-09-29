@@ -9,8 +9,8 @@ import Login from './components/Login/login.component';
 const App = () => {
   return (
     <Routes>
+      <Route path='login' element={<Login />} />
       <Route path='/*' element={<Home />}>
-        <Route index element={<Login />} />
         
       </Route>
     </Routes>

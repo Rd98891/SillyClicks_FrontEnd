@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+// import { Outlet } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import {Link, Route, Routes} from 'react-router-dom';
 import { HiMenu } from 'react-icons/hi';
@@ -11,6 +11,7 @@ import {
 import SideBar from "../../components/Sidebar/sidebar.component";
 import UserProfile from "../../components/UserProfile/userprofile.component";
 import Pins from "../Pins/pins.component";
+import { fetchUser } from "../../utils/fetchUser";
 
 
 const Home = () => {
@@ -18,9 +19,7 @@ const Home = () => {
     const [newuser, setNewUser] = useState(null);
     const scrollRef = useRef(null);
 
-    const userInfo = localStorage.getItem('user') !== 'undefined' 
-                    ? JSON.parse(localStorage.getItem('user'))
-                    : localStorage.clear();
+    const userInfo = fetchUser();
 
     useEffect(() => {
         const query = userQuery(userInfo?.uid);
@@ -69,7 +68,7 @@ const Home = () => {
                     <Route path="/*" element={<Pins user={newuser && newuser}/>}/>
                 </Routes>
             </div>
-            <Outlet/>
+            {/* <Outlet/> */}
         </div>
     )
 }
