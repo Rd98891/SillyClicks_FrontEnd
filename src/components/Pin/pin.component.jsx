@@ -7,25 +7,23 @@ import { AiTwotoneDelete } from "react-icons/ai";
 import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
 import { fetchUser } from "../../utils/fetchUser";
 
-const Pin = ({ pin: { postedBy, _id, image, save, destination } }) => {
-  const [postHovered, setPostHovered] = useState(false);
 
+const Pin = ({ pin: { postedBy, _id, image, save, destination } }) => {
+  
+  const [postHovered, setPostHovered] = useState(false);
   const navigate = useNavigate();
 
-  const user =
-    localStorage.getItem("user") !== "undefined"
-      ? JSON.parse(localStorage.getItem("user"))
-      : localStorage.clear();
-
+  const user = fetchUser();
+    
   const deletePin = (id) => {
     client.delete(id).then(() => {
       window.location.reload();
     });
   };
 
-  let alreadySaved = !!save?.filter(
-    (item) => item?.postedBy?._id === user?.googleId
-  );
+  let alreadySaved = !!(save?.filter(
+    (item) => item?.postedBy?._id === user?.uid
+  ))?.length;
 
 
   const savePin = (id) => {
@@ -37,10 +35,10 @@ const Pin = ({ pin: { postedBy, _id, image, save, destination } }) => {
         .insert("after", "save[-1]", [
           {
             _key: uuidv4(),
-            userId: user?.googleId,
+            userId: user?.uid,
             postedBy: {
               _type: "postedBy",
-              _ref: user?.googleId,
+              _ref: user?.uid,
             },
           },
         ])
@@ -113,13 +111,13 @@ const Pin = ({ pin: { postedBy, _id, image, save, destination } }) => {
                   className="bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-md"
                 >
                   <BsFillArrowUpRightCircleFill />
-                  {destination.length > 20
-                    ? destination.slice(8, 20)
+                  {destination.length > 15
+                    ? `${destination.slice(0, 15)}...`
                     : destination.slice(8)}
                 </a>
               )}
 
-              {postedBy?._id === user?.googleId && (
+              {postedBy?._id === user?.uid && (
                 <button
                   type="button"
                   onClick={(e) => {

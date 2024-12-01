@@ -41,6 +41,12 @@ module.exports = {
         350: '350px',
         620: '620px',
       },
+      boxShadow: {
+        // 'custom-gray': 'inset 3px 3px 3px white, inset -3px -3px 3px white',
+        'inner-gray': 'inset 3px 3px 3px #d0d0d0, inset -3px -3px 3px #f8f8f8',
+        'inner-input-gray': 'inset 0 3px 3px #d0d0d0, inset 0 -3px 3px #f8f8f8',
+        'outer-gray': '3px 0 3px #d0d0d0, 0 3px 3px #f8f8f8',
+      },
       textColor: {
         lightGray: '#F1EFEE',
         primary: '#FAFAFA',

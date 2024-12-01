@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { client } from "../../client" // This is pur sanity client
+import { client } from "../../client" // This is our sanity client
 import MasonryLayout from "../Masonry/masonry.component";
 import Spinner from "../Spinner/spinner.component";
 import { feedQuery, searchQuery } from "../../utils/sanity/data";
@@ -34,6 +34,7 @@ const Feed = () => {
 
     if (loading) return <Spinner message='We are adding new coding ideas to your feed!' />
     
+
     return ( 
         <div>
             {pins && <MasonryLayout pins={pins}/>} 

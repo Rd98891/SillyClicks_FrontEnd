@@ -41,12 +41,12 @@ const Home = () => {
             </div>
             <div className="flex md:hidden flex-row">
                 <div className="p-2 w-full flex flex-row justify-between items-center shadow-md">
-                    <HiMenu fontSize={40} className="cursor-pointer" onClick={() => setToogleSidebar(true)}/>
+                    <HiMenu fontSize={40} className="cursor-pointer p-2 rounded-full shadow-outer-gray hover:shadow-inner-gray" onClick={() => setToogleSidebar(true)}/>
                     <Link to ='/'>
-                        <ScIcon className="w-20"/>
+                        <ScIcon className="w-16 md:w-20"/>
                     </Link>
                     <Link to ={`user-profile/${newuser?._id}`}>
-                        <img src={newuser?.image} alt='userImage' className="w-28"/>
+                        <img src={newuser?.image} alt='userImage' className="w-20 md:w-28"/>
                     </Link>
                 </div>
                 {toogleSidebar && (

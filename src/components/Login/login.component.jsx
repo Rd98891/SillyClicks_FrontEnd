@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { signInWithGooglePopup } from '../../utils/firebase/firebase.utils';
-import GoogleButton from '../Button/button.component';
+import GoogleButton from '../Button/gsinbutton.component';
 import {
     ReactComponent as ScLogo
 } from "../../assets/LogoWhite.svg";
@@ -13,7 +13,7 @@ const Login = () => {
     
     const navigate = useNavigate();
 
-    const getGoogleResponse = async () => {
+    const getGoogleLoginResponse = async () => {
         const response = await signInWithGooglePopup();
         localStorage.setItem('user', JSON.stringify(response.user));
 
@@ -35,7 +35,7 @@ const Login = () => {
         client.createIfNotExists(doc).then(
             navigate('/', {replace: true})
         )
-        console.log(response);
+        // console.log(response);
     }
 
 
@@ -56,7 +56,7 @@ const Login = () => {
                         <ScLogo width='200px' height='200px'/>  
                     </div>
                     <div className='2x1'>
-                        <GoogleButton handleGoogleLogin={getGoogleResponse}/>
+                        <GoogleButton handleGoogleLogin={getGoogleLoginResponse}/>
                     </div>
                 </div>
             </div>

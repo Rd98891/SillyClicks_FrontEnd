@@ -5,6 +5,7 @@ export const client = createClient({
     projectId: process.env.REACT_APP_SANITY_PROJECT_ID,
     useCdn: true,
     dataset: 'production',
+    ignoreBrowserTokenWarning: true,
     apiVersion: '2023-04-20',
     token: process.env.REACT_APP_SANITY_TOKEN,
 });
